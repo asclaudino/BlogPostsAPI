@@ -11,6 +11,16 @@
           </div>
         </div>
       </div>
+      
+      <div class="my-4">
+        <p v-show="this.loadingblogPosts">
+          ...loading...
+        </p>
+        <button v-show="next" @click="getBlogPosts" class="btn btn-sm btn-outline-success">
+          Load More
+        </button>
+      </div>
+  
     </div>
   </div>
 </template>
@@ -26,16 +36,29 @@ export default {
   data() {
     return {
       posts: [],
+      next: null,
+      loadingblogPosts: false,
     };
   },
 
   methods: {
     async getBlogPosts() {
-      // let endpoint = "/api/blog-posts/";
+      let endpoint = "/api/blog-posts/";
+      if(this.next){
+        endpoint = this.next;
+      }
       // let endpoint = "http://127.0.0.1:8000/api/blog-posts/"
+      this.loadingblogPosts = true;
       try {
-        const response = await axios.get(`/api/blog-posts/`);
-        this.posts = response.data.results;
+        const response = await axios.get(endpoint);
+        this.posts.push(...response.data.results);
+        this.loadingblogPosts = false;
+        //Using the next endpoint to load more content
+        if(response.data.next){
+          this.next = response.data.next
+        } else {
+          this.next = null;
+        }
         this.posts.map((x) => {
           const date = new Date(x.created_at);
           x.created_at = date.toDateString();
