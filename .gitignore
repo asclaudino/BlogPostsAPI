@@ -1,0 +1,9 @@
+/.vscode
+/venv
+/vestibular-do-ita-mudou.jpg
+__pycache__
+db.sqlite3
+uploads
+*.pyc
+.pyc
+/nodemodules

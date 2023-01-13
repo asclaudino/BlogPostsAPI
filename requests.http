@@ -1,0 +1,33 @@
+
+### FOR USE THIS FILE PLEASE INSTALL THE REST Client Extension @ VScode MarketPlace
+### Made a helper to test our requests with the REST Client extension
+### To send a request, just comment out the wanted endpoint
+
+
+
+# GET http://127.0.0.1:8000/api/blog-posts/
+# Content-Type: application/json
+
+# {}
+
+
+
+# POST http://127.0.0.1:8000/api/blog-posts/
+# Content-Type: application/json
+
+# {
+#     "author": "Nice",
+#     "email":  "bestbytest@test.com",
+#     "avatar": null,
+#     "title":  "Teste",
+#     "content": "Some random blog post"
+# }
+
+#just choose some random existing pk to view the details 
+
+GET http://127.0.0.1:8000/api/blog-posts/1
+Content-Type: application/json
+
+{
+
+}
