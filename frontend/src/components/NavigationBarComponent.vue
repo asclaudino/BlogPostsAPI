@@ -44,10 +44,11 @@ export default {
   border-bottom: 1px solid #dddddd;
 }
 .navbar-brand {
+  color: #306bac;
   font-weight: bold;
   font-size: 150%;
 }
 .navbar-brand:hover {
-  color: #dc3545 !important;
+  color: #a8763e !important;
 }
 </style>

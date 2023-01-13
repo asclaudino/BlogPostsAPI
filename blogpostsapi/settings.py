@@ -141,3 +141,8 @@ MEDIA_URL = '/media/'
 
 CSRF_COOKIE_NAME = 'XSRF-TOKEN'
 CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.PageNumberPaginationNoCount',
+    'PAGE_SIZE':5 
+}
