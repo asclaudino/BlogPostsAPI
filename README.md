@@ -3,13 +3,13 @@
 [![My Skills](https://skills.thijs.gg/icons?i=vue,django,python,js,html,css)](https://skills.thijs.gg)
 
 This simple project was intended to practice FullStack Development, using Django and Django REST Framework for the backend and
-Vue.js for the frontend. It a simple blog, where any user can post using his name, email and photo, as well as have CRUD ability. 
+Vue.js for the frontend. It is a simple blog, where any user can post using his name, email and photo, as well as have CRUD ability. 
 
 
 # 🚀 How to Run the project 
 
 ## Backend
-  At the root folder, start running a python venv and activate it:
+  At the root folder, start running a python venv and activating it:
   ```cmd 
     python -m venv venv  
     cd .\venv\Scripts\
