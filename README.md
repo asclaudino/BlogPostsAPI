@@ -47,7 +47,7 @@ Vue.js for the frontend. It is a simple blog, where any user can post using his 
     npm run serve
   ```
   
-  # 🚀 Backend Tests
+  # :dart: Backend Tests
   
   Some tests were implemented for the api endpoints at test.py in the blogposts folder.
   To run them, just run python manage.py test:
