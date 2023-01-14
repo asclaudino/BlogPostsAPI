@@ -7,3 +7,4 @@ uploads
 *.pyc
 .pyc
 /nodemodules
+/media

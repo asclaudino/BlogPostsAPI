@@ -4,23 +4,30 @@
       <div v-for="post in posts" :key="post.id">
         <div class="card shadow p-2 mb-4 bg-body rounded">
           <div class="card-body">
-            <h1 class="mb-1 post-title">{{ post.title }}</h1>
-            <p class="mb-0 ">Posted by: 
-              <span class="post-author"> {{ post.author }}</span></p>
+            <router-link
+            class="navbar-brand"
+              :to="{ name: 'blogPost', params: { blogPostID: post.id } }"
+            >
+              <h1 class="mb-1 post-title">{{ post.title }}</h1>
+            </router-link>
+            <p class="mb-0">
+              Posted by: <span class="post-author"> {{ post.author }}</span>
+            </p>
+            
             <p class="mb-0">Posted at: {{ post.created_at }}</p>
           </div>
         </div>
       </div>
-      
       <div class="my-4">
-        <p v-show="this.loadingblogPosts">
-          ...loading...
-        </p>
-        <button v-show="next" @click="getBlogPosts" class="btn btn-sm btn-outline-success">
+        <p v-show="this.loadingblogPosts">...loading...</p>
+        <button
+          v-show="next"
+          @click="getBlogPosts"
+          class="btn btn-sm btn-outline-success"
+        >
           Load More
         </button>
       </div>
-  
     </div>
   </div>
 </template>
@@ -44,7 +51,7 @@ export default {
   methods: {
     async getBlogPosts() {
       let endpoint = "/api/blog-posts/";
-      if(this.next){
+      if (this.next) {
         endpoint = this.next;
       }
       // let endpoint = "http://127.0.0.1:8000/api/blog-posts/"
@@ -54,8 +61,8 @@ export default {
         this.posts.push(...response.data.results);
         this.loadingblogPosts = false;
         //Using the next endpoint to load more content
-        if(response.data.next){
-          this.next = response.data.next
+        if (response.data.next) {
+          this.next = response.data.next;
         } else {
           this.next = null;
         }
@@ -71,6 +78,7 @@ export default {
     },
   },
   created() {
+    document.title = "Skyler Blog"
     console.log("created...");
     this.getBlogPosts();
   },
@@ -82,9 +90,12 @@ export default {
   color: #306bac !important;
 }
 
-.post-title{
+.post-title {
   font-weight: bold;
   font-size: 150%;
   color: #a8763e;
+}
+.post-title:hover{
+  color: #306bac;
 }
 </style>
