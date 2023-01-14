@@ -5,7 +5,7 @@
         <div class="card shadow p-2 mb-4 bg-body rounded">
           <div class="card-body">
             <router-link
-            class="navbar-brand"
+              class="navbar-brand"
               :to="{ name: 'blogPost', params: { blogPostID: post.id } }"
             >
               <h1 class="mb-1 post-title">{{ post.title }}</h1>
@@ -13,7 +13,7 @@
             <p class="mb-0">
               Posted by: <span class="post-author"> {{ post.author }}</span>
             </p>
-            
+
             <p class="mb-0">Posted at: {{ post.created_at }}</p>
           </div>
         </div>
@@ -34,8 +34,6 @@
 
 <script>
 // @ is an alias to /src
-
-// import axios from "@/common/api.service.js"
 import axios from "axios";
 
 export default {
@@ -49,23 +47,30 @@ export default {
   },
 
   methods: {
+
+    // Function to fetch the data from the API
+    // In a bigger project, we should make a helpers folder and
+    // make all the http requests there.
+
     async getBlogPosts() {
       let endpoint = "/api/blog-posts/";
       if (this.next) {
         endpoint = this.next;
       }
-      // let endpoint = "http://127.0.0.1:8000/api/blog-posts/"
+
       this.loadingblogPosts = true;
       try {
         const response = await axios.get(endpoint);
         this.posts.push(...response.data.results);
         this.loadingblogPosts = false;
-        //Using the next endpoint to load more content
+
         if (response.data.next) {
           this.next = response.data.next;
         } else {
           this.next = null;
         }
+
+        // Just to output the date in a better format.
         this.posts.map((x) => {
           const date = new Date(x.created_at);
           x.created_at = date.toDateString();
@@ -77,9 +82,10 @@ export default {
       }
     },
   },
+
+  // Using the life cycle hook to retrieve data. 
   created() {
-    document.title = "Skyler Blog"
-    console.log("created...");
+    document.title = "Skyler Blog";
     this.getBlogPosts();
   },
 };
@@ -95,7 +101,7 @@ export default {
   font-size: 150%;
   color: #a8763e;
 }
-.post-title:hover{
+.post-title:hover {
   color: #306bac;
 }
 </style>

@@ -45,7 +45,6 @@ class BlogPostsAPITestCase(APITestCase):
         post_response = self.client.post("/api/blog-posts/", data)
         get_response = self.client.get(
             reverse("blog-post-detail", kwargs={"pk": 1}))
-        # print(get_response.status_code)
         self.assertEqual(get_response.status_code, status.HTTP_200_OK)
         self.assertEqual(get_response.data["author"], "CS Lewis")
         self.assertNotEqual(get_response.data["author"], "Random Author")
@@ -59,11 +58,6 @@ class BlogPostsAPITestCase(APITestCase):
             "content": "Some random blog post of Lewis"
         }
         post_response = self.client.post("/api/blog-posts/", data)
-        # get_response = self.client.get(reverse("blog-post-detail",kwargs={"pk":1}))
-        # print(get_response.status_code)
-        # data = {
-        #     "content": "Some random blog post of Lewis UPDATED"
-        # }
         put_response = self.client.put(reverse("blog-post-detail", kwargs={"pk": 1}),
                                        {
             "id": 1,
@@ -72,9 +66,6 @@ class BlogPostsAPITestCase(APITestCase):
             "title":  "Aslam",
             "content": "Some random blog post of Lewis UPDATED"
         })
-        # print(put_response.status_code, "Line 76")
-        # self.assertEqual(put_response.data["author"],"CS Lewis")
-        # self.assertNotEqual(put_response.data["author"],"Random Author")
         self.assertEqual(json.loads(put_response.content)["content"],
                          "Some random blog post of Lewis UPDATED"
                          )

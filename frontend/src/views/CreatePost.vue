@@ -80,12 +80,13 @@ export default {
   },
   methods: {
     updatePhoto(files) {
-      // if(!files.length) return;
+      // I had some difficulties here to store the image in the right way. 
 
       console.log(files[0]);
       //Store the photo
       this.photo = files[0];
     },
+
     async onSubmit() {
       console.log("form submmited");
       console.log(this.content);
@@ -106,6 +107,7 @@ export default {
           this.error = null;
         }
         alert("Post Created!");
+        //Pushing the user back after the creation.
         this.$router.back();
         console.log(response);
       } catch (error) {
